@@ -1,0 +1,14 @@
+{
+  "name": "ray-js",
+  "version": "0.0.1",
+  "description": "Debug with Ray to fix problems faster",
+  "main": "src/index.js",
+  "repository": "https://github.com/m1guelpf/ray-js",
+  "author": "Miguel Piedrafita",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "axios": "^0.21.1",
+    "uuid": "^8.3.2"
+  }
+}
