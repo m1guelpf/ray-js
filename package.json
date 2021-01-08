@@ -1,5 +1,5 @@
 {
-  "name": "ray-js",
+  "name": "js-ray",
   "version": "0.0.1",
   "description": "Debug with Ray to fix problems faster",
   "main": "src/index.js",
