@@ -2,6 +2,32 @@
 
 This package can be installed in any JS application to send messages to [the Ray app](https://myray.app).
 
+## Installation
+
+```bash
+npm install js-ray 
+```
+
+## Usage
+
+```js 
+import { ray } from 'js-ray';
+
+// ...
+
+ray('a string')
+
+ray(['an array'])
+
+ray({ text: 'an object' })
+
+ray('as' 'many' , 'arguments', 'as', 'you', 'like')
+
+ray('this is blue').color('blue')
+
+ray().newScreen('My debug screen')
+```
+
 ## Documentation
 
 You can find the full documentation on [our documentation site](https://spatie.be/docs/ray/v1/usage/javascript).
