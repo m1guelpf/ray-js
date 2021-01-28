@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { v4 as uuidv4 } from 'uuid'
+import uuid from 'uuid'
 import ColorPayload from './payloads/ColorPayload'
 import HidePayload from './payloads/HidePayload'
 import LogPayload from './payloads/LogPayload'
@@ -8,12 +8,13 @@ import RemovePayload from './payloads/RemovePayload'
 import SizePayload from './payloads/SizePayload'
 import NotifyPayload from './payloads/NotifyPayload'
 import CustomPayload from './payloads/CustomPayload'
+import StackTrace from 'stacktrace-js'
 
 class Ray {
     static client
 
     constructor(host = '127.0.0.1', port = 23517) {
-        this.uuid = uuidv4()
+        this.uuid = uuid.v4()
         this.client = axios.create({
             baseURL: `http://${host}:${port}/`,
         })
@@ -115,22 +116,28 @@ class Ray {
         return this
     }
 
+    getOrigin() {
+        const st = StackTrace.getSync()
+        return st.find(({ fileName }) => !fileName.includes('js-ray/dist/index') )
+    }
+
     sendRequest(...payloads) {
-        this.client.post('/', {
+        const origin = this.getOrigin()
+        const requestPayload = {
             uuid: this.uuid,
             payloads: payloads.map(payload => {
                 payload.origin = {
-                    file: '/some/path/here.js',
-                    line_number: 1,
+                    file: origin.fileName || 'unknown.js',
+                    line_number: origin.lineNumber || 1,
                 }
 
                 return payload
             }),
             meta: [],
-        })
+        }
+
+        this.client.post('/', requestPayload)
     }
 }
 
 export const ray = (...args) => new Ray().send(...args)
-
-export default Ray
