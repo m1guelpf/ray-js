@@ -4,16 +4,9 @@
  * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof#real-world_usage
  *
  * @param {*} obj
- * @param {*} fullClass
  * @returns {string}
  */
-export default function type(obj, fullClass = false) {
-  // get toPrototypeString() of obj (handles all types)
-  // Early JS environments return '[object Object]' for null, so it's best to directly check for it.
-  if (fullClass) {
-    return (obj === null) ? '[object Null]' : Object.prototype.toString.call(obj)
-  }
-
+export default function type(obj) {
   if (obj == null) {
     return (obj + '').toLowerCase() // implicit toString() conversion
   }
