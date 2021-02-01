@@ -9,6 +9,7 @@ import SizePayload from './payloads/SizePayload'
 import NotifyPayload from './payloads/NotifyPayload'
 import CustomPayload from './payloads/CustomPayload'
 import StackTrace from 'stacktrace-js'
+import type from './utils/type'
 
 class Ray {
     static client
@@ -99,7 +100,9 @@ class Ray {
     send(...values) {
         if (values.length == 0) return this
 
-        this.sendRequest(LogPayload(...values))
+        this.sendRequest(LogPayload(
+            ...values.map(v => type(v) === 'object' ? JSON.stringify(v) : v)
+        ))
 
         return this
     }
