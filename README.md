@@ -7,14 +7,28 @@ This package can be installed in any JS application to send messages to [the Ray
 ```bash
 npm install js-ray 
 ```
+or
+```bash
+yarn install js-ray 
+```
 
 ## Usage
 
+Using ESM import
+
 ```js 
 import { ray } from 'js-ray';
+```
 
-// ...
+Using CommonJS require
 
+```js 
+const { ray } = require('js-ray');
+```
+
+Quick examples
+
+```js 
 ray('a string')
 
 ray(['an array'])
