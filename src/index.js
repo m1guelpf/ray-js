@@ -1,5 +1,5 @@
 import axios from 'axios'
-import uuid from 'uuid'
+import { v4 as uuid } from 'uuid';
 import ColorPayload from './payloads/ColorPayload'
 import HidePayload from './payloads/HidePayload'
 import LogPayload from './payloads/LogPayload'
@@ -24,7 +24,7 @@ class Ray {
     static client
 
     constructor(host = '127.0.0.1', port = 23517) {
-        this.uuid = uuid.v4()
+        this.uuid = uuid()
         this.client = axios.create({
             baseURL: `http://${host}:${port}/`,
         })
