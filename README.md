@@ -9,7 +9,7 @@ npm install js-ray
 ```
 or
 ```bash
-yarn install js-ray 
+yarn add js-ray 
 ```
 
 ## Usage
